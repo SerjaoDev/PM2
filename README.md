@@ -6,3 +6,18 @@
 - npm run reset-project: Reseta o projeto
 - npx expo start: Inicia o projeto
 - Depois de dar o npx expo start, aperte W para iniciar na web
+
+# COMENTÁRIOS PARA ESTUDO
+# Dentro de banco.jsx
+- Guarda os dados em um estado local
+- Código: *const [dados, setDados] = useState([]);*
+
+- Guarda o valor digitado no TextInput
+- Código: *const [valor, setValor] = useState("");*
+
+- Adiciona o novo valor à lista de dados
+- Os três pontinhos é chamado de operador de espalhamento, onde pega todos os elementos da lista anterior(dados) e adiciona o valor de um segundo elemento(valor)
+- Código: *setDados([...dados, valor]);*
+
+- Exibe uma lista de valores salvos no estado dados
+- Código: * <FlatList data={dados} keyExtractor={(itme, index) => index.toString()} renderItem={({ item }) => <Text>{item}</Text>}/>*
