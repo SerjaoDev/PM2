@@ -11,14 +11,18 @@ export default function Banco() {
 
     useEffect(() => {
         db.execSync("CREATE TABLE IF NOT EXISTS DADOS (ID INTEGER PRIMARY KEY AUTOINCREMENT, VALOR TEXT);");
+        carregarDados();
     }, []);
 
+    function carregarDados(){
+        db.getAllAsync("SELECT * FROM DADOS").then((resultado) => {setDados(resultado);});
+    }
 
     function salvarDado() {
         setDados([...dados, valor]);
         setValor("");
+        carregarDados();
     }
-
 
     return (
         <View>
