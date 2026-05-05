@@ -8,23 +8,33 @@
 - npx expo start: Inicia o projeto
 - Depois de dar o npx expo start, aperte W para iniciar na web. Se quiser abrir no Android, aperte A
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # COMENTÁRIOS PARA ESTUDO
-# Dentro de banco.jsx
+**Dentro de banco.jsx**
 - Guarda os dados em um estado local
-- Código: *const [dados, setDados] = useState([]);*
+- **Código**: *const [dados, setDados] = useState([]);*
 
 - Guarda o valor digitado no TextInput
-- Código: *const [valor, setValor] = useState("");*
+- **Código**: *const [valor, setValor] = useState("");*
 
 - Adiciona o novo valor à lista de dados
 - Os três pontinhos é chamado de operador de espalhamento, onde pega todos os elementos da lista anterior(dados) e adiciona o valor de um segundo elemento(valor)
-- Código: *setDados([...dados, valor]);*
+- **Código**: *setDados([...dados, valor]);*
 
 - Exibe uma lista de valores salvos no estado dados
-- Código: *<FlatList data={dados} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) => <Text>{item}</Text>}/>*
+- **Código**: *<FlatList data={dados} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) => <Text>{item}</Text>}/>*
 
 - Abre uma conexão com a base de dados sqlite
-- Código: *const db = SQLite.openDatabaseSync["banco.db"];*
+- **Código**: *const db = SQLite.openDatabaseSync["banco.db"];*
 
 - Cria a tabela DADOS caso ela não exista, necessário para garantir que a base de dados exista e tenha a tabela que esperamos
-- Código: *useEffect(()=>{db.execSync("CREATE TABLE IF NOT EXISTS DADOS(ID INTEGER PRIMARY KEY AUTO_INCREMENT, VALOR TEXT);");},[])*
+- **Código**: *useEffect(()=>{db.execSync("CREATE TABLE IF NOT EXISTS DADOS(ID INTEGER PRIMARY KEY AUTO_INCREMENT, VALOR TEXT);");},[])*
+
+- Se o valor digitado contiver apenas espaços, então a função para. O comando 'trim()' remove estes espaços em excesso
+- **Código**: *if(valor.trim()){ return; }*
+
+- Se houver algo para salvar, então executa o insert na base de dados
+- **Código**: *db.runAsync("INSERT INTO DADOS (VALOR) VALUES (?);", [valor])*
+
+- Avisa que a inserção foi terminada
+- **Código**: *console.log("Inserção terminada")*
