@@ -4,12 +4,11 @@ import { Button, FlatList, Text, TextInput, View } from "react-native";
 
 
 export default function Banco() {
-    const db = SQLite.openDatabaseSync("banco2.db");
+    const db = SQLite.openDatabaseSync("banco.db");
     const [dados, setDados] = useState([]);
     const [valor, setValor] = useState("");
     const [editando, setEditando] = useState(false);
     const [idSendoEditado, setIdSendoEditado] = useState(0);
-    const [apagado, setApagado] = useState(false);
 
     useEffect(() => {
         db.execSync("CREATE TABLE IF NOT EXISTS DADOS (id INTEGER PRIMARY KEY AUTOINCREMENT, valor TEXT);");
@@ -52,9 +51,10 @@ export default function Banco() {
         )
     }
 
-    function apagarDados(id, valor){
+    function apagarDados(item){
+        setIdSendoEditado(item.id)
         db.runAsync("DELETE FROM DADOS WHERE id = ?", 
-            [ valor, id ]
+            [ idSendoEditado ]
         ).then(
             carregarItems()
         )
@@ -108,10 +108,7 @@ export default function Banco() {
                                 <Button 
                                     title="Apagar"
                                     onPress={
-                                        () => {
-                                        if(apagado){
-                                           apagarDados(valor);
-                                        }}
+                                        () => apagarDados(item)
                                     }
                                 />
                             </>
