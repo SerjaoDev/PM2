@@ -20,8 +20,7 @@
 - Exibe uma lista de valores salvos no estado dados
 - **Código**: *<FlatList data={dados} keyExtractor={(item) => index.ID.toString()} renderItem={({ item }) => <Text>{item}</Text>}/>*
 
-- Abre uma conexão com a base de dados sqlite
-- Se o arquivo "banco.db" não existir, aqui ele é criado
+- Abre uma conexão com a base de dados sqlite. Se o arquivo "banco.db" não existir, aqui ele é criado
 - **Código**: *const db = SQLite.openDatabaseSync["banco.db"];*
 
 - Cria a tabela DADOS caso ela não exista, necessário para garantir que a base de dados exista e tenha a tabela que esperamos
