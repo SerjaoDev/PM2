@@ -32,5 +32,5 @@
 - Se houver algo para salvar, então executa o insert na base de dados
 - **Código**: *db.runAsync("INSERT INTO DADOS (valor) VALUES (?);", [valor])*.then(() => {console.log("Inserção terminada"); carregarItems(); setValor("");});
   
-- Informar se o app está em modo de edição
+- Informa se o app está em modo de edição
 - **Código**: *const [editando, setEditando] = useState(false);*
